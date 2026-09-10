@@ -1,0 +1,4 @@
+/style.css
+  Cache-Control: public, max-age=86400
+/links/view.js
+  Cache-Control: public, max-age=86400
