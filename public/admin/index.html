@@ -1,1 +1,56 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#000"><title>管理画面｜THE FOOL LINKS</title><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/layout.css"></head><body><main class="page"><header class="topbar"><a class="back" href="/">戻る</a><h1>管理画面</h1><span></span></header><div class="admin-tabs"><button id="cardTab" class="button primary">カード作成管理</button><button id="layoutTab" class="button">配置管理</button></div><section id="cardPanel"><div class="frame panel"><label class="field">要素認識コード<input id="code" readonly></label><label class="field">キャンペーン名<input id="name" maxlength="30"></label><label class="field">終了日<input id="endDate" type="date"></label><label class="field">抽選URL<input id="url" type="url"></label><div class="row"><button id="clear" class="button">入力を戻す</button><button id="saveCard" class="button primary">保存する</button></div><p id="cardNotice" class="notice"></p></div><div id="cardList" class="admin-list"></div></section><section id="layoutPanel" class="hidden"><div class="layout-actions"><button class="button" data-add-row="3">3枠の段を追加</button><button class="button" data-add-row="4">4枠の段を追加</button><button id="addSeparator" class="button">区切り線を追加</button></div><p class="layout-help">カードの矢印で位置を移動できます</p><div id="layoutEditor" class="layout-editor"></div><button id="saveLayout" class="button primary save-layout">配置を保存</button><p id="layoutNotice" class="notice"></p></section></main><script src="/admin/admin.js" defer></script></body></html>
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#000">
+  <title>管理画面｜THE FOOL LINKS</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/layout.css">
+</head>
+<body>
+<main class="page admin-page">
+  <header class="topbar"><a class="back" href="/">戻る</a><h1>管理画面</h1><span></span></header>
+  <nav class="admin-tabs" aria-label="管理メニュー">
+    <button id="cardTab" class="button primary">カード作成管理</button>
+    <button id="layoutTab" class="button">配置管理</button>
+  </nav>
+
+  <section id="cardPanel">
+    <div class="frame panel">
+      <label class="field">要素認識コード<input id="code" readonly></label>
+      <label class="field">キャンペーン名<input id="name" maxlength="30"></label>
+      <label class="field">終了日<input id="endDate" type="date"></label>
+      <label class="field">抽選URL<input id="url" type="url" inputmode="url"></label>
+      <label class="active-field"><input id="active" type="checkbox" checked><span>閲覧画面に公開する</span></label>
+      <div class="row"><button id="clear" class="button">入力を戻す</button><button id="saveCard" class="button primary">保存する</button></div>
+      <p id="cardNotice" class="notice" role="status"></p>
+    </div>
+    <div id="cardList" class="admin-list"></div>
+  </section>
+
+  <section id="layoutPanel" class="hidden">
+    <div class="layout-toolbar">
+      <button class="button" data-add-row="3">3枠の段</button>
+      <button class="button" data-add-row="4">4枠の段</button>
+      <button id="addSeparator" class="button">区切り線</button>
+    </div>
+    <p class="layout-help">カードを長押しして、そのまま置きたい場所へ動かします</p>
+
+    <section class="unplaced-box">
+      <div class="section-line"><h2>未配置カード</h2><span id="unplacedCount"></span></div>
+      <div id="unplacedCards" class="unplaced-cards"></div>
+    </section>
+
+    <div class="section-line"><h2>閲覧画面の配置</h2><span id="dirtyState">保存済み</span></div>
+    <div id="layoutEditor" class="layout-editor"></div>
+    <div class="layout-savebar">
+      <button id="undoLayout" class="button" disabled>1つ戻す</button>
+      <button id="saveLayout" class="button primary">配置を保存</button>
+    </div>
+    <p id="layoutNotice" class="notice" role="status"></p>
+  </section>
+</main>
+<script src="/admin/admin.js" defer></script>
+</body>
+</html>
