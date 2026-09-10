@@ -72,6 +72,8 @@ function bindDrag(){document.querySelectorAll('[data-drag-code]').forEach(el=>{
   el.onpointerup=e=>{if(timer)clearTimeout(timer);timer=null;if(drag)finishDrag(e.clientX,e.clientY)};
   el.onpointercancel=()=>{if(timer)clearTimeout(timer);cancelDrag()};
 })}
+document.addEventListener('selectstart',e=>{if(e.target.closest?.('.layout-card'))e.preventDefault()});
+document.addEventListener('contextmenu',e=>{if(e.target.closest?.('.layout-card'))e.preventDefault()});
 function beginDrag(el,e){drag={code:el.dataset.dragCode,source:el.dataset.source};el.classList.add('dragging');document.body.classList.add('drag-mode');navigator.vibrate?.(30);markTarget(e.clientX,e.clientY)}
 function markTarget(x,y){document.querySelectorAll('.layout-drop').forEach(el=>el.classList.remove('drop-ready'));const el=document.elementFromPoint(x,y)?.closest('.layout-drop');if(el)el.classList.add('drop-ready')}
 function finishDrag(x,y){const target=document.elementFromPoint(x,y)?.closest('.layout-drop');const d=drag;cancelDrag();if(!target)return;const [ri,si]=target.dataset.target.split(',').map(Number),to=data.layout[ri];const source=d.source==='unplaced'?null:d.source.split(',').map(Number);if(source&&data.layout[source[0]]?.columns!==to.columns){$('layoutNotice').textContent='3枠は3枠へ、4枠は4枠へ移動してください';return}mutate(()=>moveCard(d.code,source,ri,si));$('layoutNotice').textContent='配置を変更しました（まだ未保存です）'}
