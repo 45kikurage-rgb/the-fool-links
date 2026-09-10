@@ -1,0 +1,7 @@
+name="the-fool-links"
+compatibility_date="2026-09-10"
+pages_build_output_dir="."
+[[d1_databases]]
+binding="DB"
+database_name="the-fool-links-db"
+database_id="REPLACE_WITH_D1_DATABASE_ID"
