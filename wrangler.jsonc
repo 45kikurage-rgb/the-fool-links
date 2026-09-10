@@ -2,5 +2,12 @@
   "name": "the-fool-links",
   "main": "worker.js",
   "compatibility_date": "2026-09-10",
-  "assets": { "directory": "./public", "binding": "ASSETS" }
+  "assets": { "directory": "./public", "binding": "ASSETS" },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "the-fool-links-db",
+      "database_id": "f461de9b-cd4a-47a4-be7a-13ae2ce8e838"
+    }
+  ]
 }
