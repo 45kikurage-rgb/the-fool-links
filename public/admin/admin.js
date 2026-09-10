@@ -67,8 +67,8 @@ function removeFromLayout(code){for(const r of data.layout)if(r.codes){const i=r
 
 function bindDrag(){document.querySelectorAll('[data-drag-code]').forEach(el=>{
   let timer,start;
-  el.onpointerdown=e=>{if(e.button!==0)return;start={x:e.clientX,y:e.clientY};timer=setTimeout(()=>beginDrag(el,e),420);el.setPointerCapture?.(e.pointerId)};
-  el.onpointermove=e=>{if(timer&&Math.hypot(e.clientX-start.x,e.clientY-start.y)>9){clearTimeout(timer);timer=null}if(drag)markTarget(e.clientX,e.clientY)};
+  el.onpointerdown=e=>{if(e.button!==0)return;e.preventDefault();start={x:e.clientX,y:e.clientY};timer=setTimeout(()=>beginDrag(el,e),420);el.setPointerCapture?.(e.pointerId)};
+  el.onpointermove=e=>{e.preventDefault();if(timer&&Math.hypot(e.clientX-start.x,e.clientY-start.y)>9){clearTimeout(timer);timer=null}if(drag)markTarget(e.clientX,e.clientY)};
   el.onpointerup=e=>{if(timer)clearTimeout(timer);timer=null;if(drag)finishDrag(e.clientX,e.clientY)};
   el.onpointercancel=()=>{if(timer)clearTimeout(timer);cancelDrag()};
 })}
